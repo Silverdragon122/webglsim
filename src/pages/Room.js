@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import Stats from 'stats.js'; // Import stats.js
 
 const Room = () => {
   const mountRef = useRef(null);
@@ -8,17 +9,22 @@ const Room = () => {
   useEffect(() => {
     const mount = mountRef.current;
 
+    // Initialize stats
+    const stats = new Stats();
+    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+    document.body.appendChild(stats.dom);
+
     // Scene
     const scene = new THREE.Scene();
 
     // Camera
-    const camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.set(0, 2, 5); // Adjusted camera position
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(mount.clientWidth, mount.clientHeight);
-    mount.appendChild(renderer.domElement);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    mount.appendChild(renderer.domElement); // Append to mount element
 
     // Room dimensions
     const roomWidth = 10;
@@ -154,16 +160,19 @@ const Room = () => {
 
     // Animation loop
     const animate = () => {
-      requestAnimationFrame(animate);
+      stats.begin(); // Start measuring
       controls.update(); // Update controls
       renderer.render(scene, camera);
+      stats.end(); // End measuring
     };
-    animate();
+
+    // Use setAnimationLoop to match the monitor's refresh rate
+    renderer.setAnimationLoop(animate);
 
     // Handle window resize
     const handleResize = () => {
-      renderer.setSize(mount.clientWidth, mount.clientHeight);
-      camera.aspect = mount.clientWidth / mount.clientHeight;
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
     };
     window.addEventListener('resize', handleResize);
@@ -173,13 +182,13 @@ const Room = () => {
       window.removeEventListener('resize', handleResize);
       mount.removeChild(renderer.domElement);
       controls.dispose();
+      document.body.removeChild(stats.dom);
     };
   }, []);
 
   return (
-    <div>
+    <div ref={mountRef} style={{ width: '100%', height: '100vh' }}>
       <h1>Welcome to the Kitchen</h1>
-      <div ref={mountRef} style={{ width: '100%', height: '500px' }} />
     </div>
   );
 };
