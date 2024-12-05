@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from 'react-router-dom';
+import Tutorial from './pages/Tutorial'; // Import the new Tutorial component
+import Room from './pages/Room'; // Import the new Room component
+import NotFound from './pages/404'; // Import the new 404 component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/tutorial" />} />
+        <Route path="/tutorial" element={<Tutorial />} />
+        <Route path="/room" element={<Room />} />
+        <Route path="*" element={<NotFound />} /> {/* Add the 404 route */}
+      </Routes>
+    </Router>
   );
 }
 
