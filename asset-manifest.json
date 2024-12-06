@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/webglsim/static/css/main.dd4cbadc.css",
-    "main.js": "/webglsim/static/js/main.a6e6bbfd.js",
-    "static/js/453.712979e5.chunk.js": "/webglsim/static/js/453.712979e5.chunk.js",
-    "index.html": "/webglsim/index.html",
-    "main.dd4cbadc.css.map": "/webglsim/static/css/main.dd4cbadc.css.map",
-    "main.a6e6bbfd.js.map": "/webglsim/static/js/main.a6e6bbfd.js.map",
-    "453.712979e5.chunk.js.map": "/webglsim/static/js/453.712979e5.chunk.js.map"
+    "main.css": "/static/css/main.dd4cbadc.css",
+    "main.js": "/static/js/main.d5b1872f.js",
+    "static/js/453.712979e5.chunk.js": "/static/js/453.712979e5.chunk.js",
+    "index.html": "/index.html",
+    "main.dd4cbadc.css.map": "/static/css/main.dd4cbadc.css.map",
+    "main.d5b1872f.js.map": "/static/js/main.d5b1872f.js.map",
+    "453.712979e5.chunk.js.map": "/static/js/453.712979e5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dd4cbadc.css",
-    "static/js/main.a6e6bbfd.js"
+    "static/js/main.d5b1872f.js"
   ]
 }
