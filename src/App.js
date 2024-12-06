@@ -11,9 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/room" />} />
-        <Route path="/room" element={<Room />} />
-        <Route path="*" element={<NotFound />} /> {/* Add the 404 route */}
+        <Route path="*" element={<Room />} /> {/* Add the 404 route */}
       </Routes>
     </Router>
   );
